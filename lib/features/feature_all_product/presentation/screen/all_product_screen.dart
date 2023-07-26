@@ -66,7 +66,7 @@ class AllProductScreen extends StatelessWidget {
                       crossAxisCount: 2,
                       crossAxisSpacing: 15.0,
                       mainAxisSpacing: 15.0,
-                      childAspectRatio: 2 / 2.7,
+                      childAspectRatio: 2 / 2.8,
                     ),
                     itemCount: 10,
                     physics: const BouncingScrollPhysics(),
@@ -117,7 +117,7 @@ class AllProductScreen extends StatelessWidget {
                                       left: 5,
                                       child: Container(
                                         decoration: const BoxDecoration(
-                                          color: Colors.red,
+                                          color: Color(0xffD02026),
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(15),
                                           ),
@@ -223,7 +223,6 @@ class AllProductScreen extends StatelessWidget {
                     },
                   ),
                 ),
-
               ],
             ),
           ),
