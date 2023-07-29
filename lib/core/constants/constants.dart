@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-const String kBaseUrl = '';
+const String kBaseUrl = 'http://startflutter.ir/api/collection/';
 
 const int kConnectTimeout = 50000;
 const int kReceiveTimeout = 50000;
 
 const String kUnknownInputCast = "Unknown Input Cast";
-const String faPrimaryFontFamily = 'iransans';
 
 // region <<< Crane >>>
 const kColorOffWhite = Color(0xffF6F6F8);
@@ -45,20 +44,17 @@ const iransans12BoldLightBlack = TextStyle(
 const titleTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 20,
-  fontFamily: faPrimaryFontFamily,
   color: kColorRed,
 );
 const headlineTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 14,
-  fontFamily: faPrimaryFontFamily,
   color: kColorDarkBlue,
 );
 
 const kPurple = Color(0xff5855C6);
 const iransansBoldSize16Purple = TextStyle(
   color: Colors.white,
-  fontFamily: faPrimaryFontFamily,
   fontWeight: FontWeight.bold,
   decoration: TextDecoration.none,
   fontSize: 16,
@@ -67,7 +63,6 @@ const iransansBoldSize16Purple = TextStyle(
 const kSlideTitleStyle = TextStyle(
   fontSize: 22.0,
   color: Color(0xffef353c), //kColorRedCoTop,
-  fontFamily: faPrimaryFontFamily,
   fontWeight: FontWeight.w700,
 );
 const kSlideButtonsStyle = TextStyle(

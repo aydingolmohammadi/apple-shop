@@ -446,6 +446,9 @@ class ProductScreen extends StatelessWidget {
                                             color: Colors.grey,
                                             borderRadius:
                                                 BorderRadius.circular(5),
+                                            border: Border.all(
+                                              color: Colors.white,
+                                            ),
                                           ),
                                           child: const Center(
                                             child: Text(
@@ -565,26 +568,24 @@ class ProductScreen extends StatelessWidget {
                                   height: 55,
                                   width: 160,
                                   decoration: BoxDecoration(
-
-
-                                      color: Colors.transparent,
-                                      border: Border.all(color: Colors.white)),
+                                    color: Colors.transparent,
+                                    border: Border.all(color: Colors.white),
+                                  ),
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0),
                                     child: Row(
                                       children: [
                                         Container(
                                           decoration: const BoxDecoration(
                                             color: Color(0xffD02026),
-                                            borderRadius:
-                                            BorderRadius.all(
+                                            borderRadius: BorderRadius.all(
                                               Radius.circular(15),
                                             ),
                                           ),
                                           child: const Padding(
                                             padding: EdgeInsets.symmetric(
-                                                vertical: 2,
-                                                horizontal: 6),
+                                                vertical: 2, horizontal: 6),
                                             child: Text(
                                               '15 ٪',
                                               style: TextStyle(
@@ -598,22 +599,18 @@ class ProductScreen extends StatelessWidget {
                                         const Spacer(),
                                         Column(
                                           mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .center,
+                                              MainAxisAlignment.center,
                                           crossAxisAlignment:
-                                          CrossAxisAlignment
-                                              .end,
+                                              CrossAxisAlignment.end,
                                           children: [
                                             Text(
                                               '46.000.000',
                                               style: TextStyle(
                                                 fontFamily: 'sm',
                                                 fontSize: 12,
-                                                color: Colors
-                                                    .grey.shade300,
+                                                color: Colors.grey.shade300,
                                                 decoration:
-                                                TextDecoration
-                                                    .lineThrough,
+                                                    TextDecoration.lineThrough,
                                               ),
                                             ),
                                             const Text(

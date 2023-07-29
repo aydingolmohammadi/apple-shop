@@ -112,30 +112,6 @@ class AllProductScreen extends StatelessWidget {
                                         'assets/images/deactive_favorite_product.svg',
                                       ),
                                     ),
-                                    Positioned(
-                                      bottom: 0,
-                                      left: 5,
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xffD02026),
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(15),
-                                          ),
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 2, horizontal: 6),
-                                          child: Text(
-                                            '15 ٪',
-                                            style: TextStyle(
-                                              fontFamily: 'sb',
-                                              fontSize: 12,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )
                                   ],
                                 ),
                                 const Spacer(),
@@ -169,8 +145,25 @@ class AllProductScreen extends StatelessWidget {
                                         ),
                                         child: Row(
                                           children: [
-                                            SvgPicture.asset(
-                                              'assets/images/arrow_circle.svg',
+                                            Container(
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xffD02026),
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(15),
+                                                ),
+                                              ),
+                                              child: const Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 2, horizontal: 6),
+                                                child: Text(
+                                                  '15 ٪',
+                                                  style: TextStyle(
+                                                    fontFamily: 'sb',
+                                                    fontSize: 12,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                             const Spacer(),
                                             Column(

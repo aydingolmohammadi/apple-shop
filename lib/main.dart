@@ -1,4 +1,5 @@
 import 'package:apple_shop/features/feature_all_product/presentation/screen/all_product_screen.dart';
+import 'package:apple_shop/features/feature_login/presentation/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           statusBarColor: Colors.grey.shade200,
           systemNavigationBarColor: Colors.white,
         ),
-        child: const MainScreen(),
+        child: const LoginScreen(),
       ),
     );
   }
