@@ -1,5 +1,7 @@
 import 'package:apple_shop/features/feature_login/data/dto/login_dto.dart';
 import 'package:apple_shop/features/feature_login/domain/params/login_param.dart';
+import 'package:apple_shop/features/feature_sign_up/data/dto/sign_up_dto.dart';
+import 'package:apple_shop/features/feature_sign_up/domain/params/sign_up_param.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -12,6 +14,11 @@ abstract class RemoteService {
   factory RemoteService(Dio dio, {String baseUrl}) = _RemoteService;
 
   @POST('records')
+  Future<HttpResponse<SignUpDto>> signUpUser({
+    @Body() required SignUpParam signUpParam,
+  });
+
+  @POST('auth-with-password')
   Future<HttpResponse<LoginDto>> loginUser({
     @Body() required LoginParam loginParam,
   });

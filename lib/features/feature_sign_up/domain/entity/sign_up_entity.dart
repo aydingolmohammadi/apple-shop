@@ -4,36 +4,15 @@
 
 import 'dart:convert';
 
-LoginEntity loginEntityFromJson(String str) => LoginEntity.fromJson(json.decode(str));
+SignUpEntity loginEntityFromJson(String str) => SignUpEntity.fromJson(json.decode(str));
 
-String loginEntityToJson(LoginEntity data) => json.encode(data.toJson());
+String loginEntityToJson(SignUpEntity data) => json.encode(data.toJson());
 
-class LoginEntity {
-  Record record;
-  String token;
-
-  LoginEntity({
-    required this.record,
-    required this.token,
-  });
-
-  factory LoginEntity.fromJson(Map<String, dynamic> json) => LoginEntity(
-    record: Record.fromJson(json["record"]),
-    token: json["token"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "record": record.toJson(),
-    "token": token,
-  };
-}
-
-class Record {
+class SignUpEntity {
   String avatar;
   String collectionId;
   String collectionName;
   String created;
-  String email;
   bool emailVisibility;
   String id;
   String name;
@@ -41,12 +20,11 @@ class Record {
   String username;
   bool verified;
 
-  Record({
+  SignUpEntity({
     required this.avatar,
     required this.collectionId,
     required this.collectionName,
     required this.created,
-    required this.email,
     required this.emailVisibility,
     required this.id,
     required this.name,
@@ -55,12 +33,11 @@ class Record {
     required this.verified,
   });
 
-  factory Record.fromJson(Map<String, dynamic> json) => Record(
+  factory SignUpEntity.fromJson(Map<String, dynamic> json) => SignUpEntity(
     avatar: json["avatar"],
     collectionId: json["collectionId"],
     collectionName: json["collectionName"],
     created: json["created"],
-    email: json["email"],
     emailVisibility: json["emailVisibility"],
     id: json["id"],
     name: json["name"],
@@ -74,7 +51,6 @@ class Record {
     "collectionId": collectionId,
     "collectionName": collectionName,
     "created": created,
-    "email": email,
     "emailVisibility": emailVisibility,
     "id": id,
     "name": name,

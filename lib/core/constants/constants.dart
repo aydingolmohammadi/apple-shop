@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const String kBaseUrl = 'http://startflutter.ir/api/collection/';
+const String kBaseUrl = 'http://startflutter.ir/api/collections/users/';
 
 const int kConnectTimeout = 50000;
 const int kReceiveTimeout = 50000;

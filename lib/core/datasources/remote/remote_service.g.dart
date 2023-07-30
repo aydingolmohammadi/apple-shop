@@ -13,12 +13,42 @@ class _RemoteService implements RemoteService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://startflutter.ir/api/collection/';
+    baseUrl ??= 'http://startflutter.ir/api/collections/users/';
   }
 
   final Dio _dio;
 
   String? baseUrl;
+
+  @override
+  Future<HttpResponse<SignUpDto>> signUpUser(
+      {required SignUpParam signUpParam}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(signUpParam.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SignUpDto>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'records',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SignUpDto.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
 
   @override
   Future<HttpResponse<LoginDto>> loginUser(
@@ -36,7 +66,7 @@ class _RemoteService implements RemoteService {
     )
             .compose(
               _dio.options,
-              'records',
+              'auth-with-password',
               queryParameters: queryParameters,
               data: _data,
             )

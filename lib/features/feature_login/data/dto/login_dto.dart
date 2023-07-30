@@ -1,53 +1,34 @@
-import 'package:apple_shop/features/feature_login/domain/entity/login_entity.dart';
+import '../../domain/entity/login_entity.dart';
 
 class LoginDto extends LoginEntity {
   LoginDto({
-    String? avatar,
-    String? collectionId,
-    String? collectionName,
-    String? created,
-    bool? emailVisibility,
-    String? id,
-    String? name,
-    String? updated,
-    String? username,
-    bool? verified,
+    String? token,
+    Record? record,
   }) : super(
-    avatar: avatar ?? '',
-    collectionId: collectionId ?? '',
-    collectionName: collectionName ?? '',
-    created: created ?? '',
-    emailVisibility: true,
-    id: id ?? '',
-    name: name ?? '',
-    updated: updated ?? '',
-    username: username ?? '',
-    verified: true,
-  );
+          token: token ?? '',
+          record: record ??
+              Record(
+                avatar: '',
+                collectionId: '',
+                collectionName: '',
+                created: '',
+                email: '',
+                emailVisibility: true,
+                id: '',
+                name: '',
+                updated: '',
+                username: '',
+                verified: true,
+              ),
+        );
 
   factory LoginDto.fromJson(Map<String, dynamic> json) => LoginDto(
-    avatar: json["avatar"],
-    collectionId: json["collectionId"],
-    collectionName: json["collectionName"],
-    created: json["created"],
-    emailVisibility: json["emailVisibility"],
-    id: json["id"],
-    name: json["name"],
-    updated: json["updated"],
-    username: json["username"],
-    verified: json["verified"],
-  );
+        token: json["token"],
+        record: Record.fromJson(json["record"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "avatar": avatar,
-    "collectionId": collectionId,
-    "collectionName": collectionName,
-    "created": created,
-    "emailVisibility": emailVisibility,
-    "id": id,
-    "name": name,
-    "updated": updated,
-    "username": username,
-    "verified": verified,
-  };
+        "token": token,
+        "record": record.toJson(),
+      };
 }

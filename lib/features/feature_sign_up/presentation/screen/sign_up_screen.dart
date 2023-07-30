@@ -1,24 +1,23 @@
-import 'package:apple_shop/features/feature_sign_up/presentation/screen/sign_up_screen.dart';
+import 'package:apple_shop/features/feature_sign_up/domain/params/sign_up_param.dart';
+import 'package:apple_shop/features/feature_sign_up/presentation/bloc/sign_up_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/utils/page_route_animation.dart';
-import '../../domain/params/login_param.dart';
-import '../bloc/login_bloc.dart';
-
-class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController usernameController = TextEditingController();
 
   final TextEditingController passController = TextEditingController();
+
+  final TextEditingController confirmPassController = TextEditingController();
 
   @override
   void initState() {
@@ -41,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               children: [
                 Expanded(
-                  flex: 5,
+                  flex: 3,
                   child: Container(
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
@@ -84,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Expanded(
-                  flex: 5,
+                  flex: 7,
                   child: Container(
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
@@ -157,16 +156,47 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                               ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              TextFormField(
+                                controller: confirmPassController,
+                                decoration: InputDecoration(
+                                  labelText: 'تکرار رمز عبور',
+                                  errorBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(
+                                      color: Color(0xffD02026),
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(
+                                      color: Colors.black,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(
+                                      color: Color(0xff3B5EDF),
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                           const Spacer(),
                           GestureDetector(
                             onTap: () {
-                              BlocProvider.of<LoginBloc>(context).add(
-                                UlEvent(
-                                  LoginParam(
-                                    identity: usernameController.text,
+                              BlocProvider.of<SignUpBloc>(context).add(
+                                UsEvent(
+                                  SignUpParam(
+                                    username: usernameController.text,
                                     password: passController.text,
+                                    passwordConfirm: confirmPassController.text,
                                   ),
                                 ),
                               );
@@ -179,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               child: const Center(
                                 child: Text(
-                                  'ورود',
+                                  'ثبت نام',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'sb',
@@ -189,43 +219,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  'اگر حساب کاربری ندارید ',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: 'sm',
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                      pageRouteAnimation(
-                                        page: SignUpScreen(),
-                                      ),
-                                      (route) => false,
-                                    );
-                                  },
-                                  child: const Text(
-                                    'ثبت نام کنید.',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'sb',
-                                      color: Color(0xff3B5EDF),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
                         ],
                       ),
                     ),

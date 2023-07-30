@@ -4,20 +4,19 @@ import 'package:flutter/foundation.dart';
 import '../../../../core/datasources/remote/remote_service.dart';
 import '../../../../core/resources/data_state.dart';
 import '../../../../core/utils/exception_parser.dart';
-import '../../domain/entity/login_entity.dart';
-import '../../domain/params/login_param.dart';
-import '../../domain/repository/login_repository.dart';
+import '../../domain/entity/sign_up_entity.dart';
+import '../../domain/params/sign_up_param.dart';
+import '../../domain/repository/sign_up_repository.dart';
 
-
-class LoginRepositoryImpl implements LoginRepository {
+class SignUpRepositoryImpl implements SignUpRepository {
   final RemoteService _remoteService;
 
-  const LoginRepositoryImpl(this._remoteService);
+  const SignUpRepositoryImpl(this._remoteService);
 
   @override
-  Future<DataState<LoginEntity>> loginUser({required LoginParam loginParam}) async{
+  Future<DataState<SignUpEntity>> signUpUser({required SignUpParam signUpParam}) async{
     try {
-      final httpResponse = await _remoteService.loginUser(loginParam: loginParam);
+      final httpResponse = await _remoteService.signUpUser(signUpParam: signUpParam);
 
       if (ExceptionParser.isResponseSuccessful(httpResponse)) {
         return DataSuccess(httpResponse.data);

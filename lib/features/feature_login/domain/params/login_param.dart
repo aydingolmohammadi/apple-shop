@@ -9,25 +9,21 @@ LoginParam loginParamFromJson(String str) => LoginParam.fromJson(json.decode(str
 String loginParamToJson(LoginParam data) => json.encode(data.toJson());
 
 class LoginParam {
-  String username;
+  String identity;
   String password;
-  String passwordConfirm;
 
   LoginParam({
-    required this.username,
+    required this.identity,
     required this.password,
-    required this.passwordConfirm,
   });
 
   factory LoginParam.fromJson(Map<String, dynamic> json) => LoginParam(
-    username: json["username"],
+    identity: json["identity"],
     password: json["password"],
-    passwordConfirm: json["passwordConfirm"],
   );
 
   Map<String, dynamic> toJson() => {
-    "username": username,
+    "identity": identity,
     "password": password,
-    "passwordConfirm": passwordConfirm,
   };
 }
