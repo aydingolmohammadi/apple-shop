@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => locator<SignUpBloc>()),
             BlocProvider(create: (_) => locator<LoginBloc>()),
           ],
-          child: MainScreen(),
+          child: LoginScreen(),
         ),
       ),
     );

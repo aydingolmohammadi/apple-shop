@@ -7,6 +7,8 @@ const int kReceiveTimeout = 50000;
 
 const String kUnknownInputCast = "Unknown Input Cast";
 
+const String kToken = "kToken";
+
 // region <<< Crane >>>
 const kColorOffWhite = Color(0xffF6F6F8);
 const kColorDarkGray = Color(0xff303030);

@@ -1,12 +1,18 @@
+import 'package:apple_shop/core/secure_storage/secure_storage.dart';
+import 'package:apple_shop/features/feature_login/domain/entity/login_entity.dart';
 import 'package:apple_shop/features/feature_sign_up/presentation/screen/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/constants/constants.dart';
 import '../../../../core/utils/page_route_animation.dart';
+import '../../../feature_main/presentation/screen/main_screen.dart';
 import '../../domain/params/login_param.dart';
 import '../bloc/login_bloc.dart';
+import '../bloc/ul_status.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -16,9 +22,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController usernameController =
+      TextEditingController(text: 'AydinTaeb');
 
-  final TextEditingController passController = TextEditingController();
+  final TextEditingController passController =
+      TextEditingController(text: '0441099211aT@');
 
   @override
   void initState() {
@@ -160,34 +168,127 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           const Spacer(),
-                          GestureDetector(
-                            onTap: () {
-                              BlocProvider.of<LoginBloc>(context).add(
-                                UlEvent(
-                                  LoginParam(
-                                    identity: usernameController.text,
-                                    password: passController.text,
+                          BlocConsumer<LoginBloc, LoginState>(
+                            listener: (context, state) {
+                              if (state.ulStatus is UlCompleted) {
+                                // final UlCompleted ulCompleted =
+                                // state.ulStatus as UlCompleted;
+                                // final LoginEntity loginEntity =
+                                //     ulCompleted.loginEntity;
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  pageRouteAnimation(page: const MainScreen()),
+                                      (route) => false,
+                                );
+                              }
+                            },
+                            builder: (context, state) {
+                              if (state.ulStatus is UlInit) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    BlocProvider.of<LoginBloc>(context).add(
+                                      UlEvent(
+                                        LoginParam(
+                                          identity: usernameController.text,
+                                          password: passController.text,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xff3B5EDF),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'ورود',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'sb',
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              if (state.ulStatus is UlLoading) {
+                                return Container(
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xff3B5EDF),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: const Center(
+                                      child: SpinKitThreeBounce(
+                                    color: Colors.white,
+                                    size: 15,
+                                  )),
+                                );
+                              }
+                              if (state.ulStatus is UlError) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    BlocProvider.of<LoginBloc>(context).add(
+                                      UlEvent(
+                                        LoginParam(
+                                          identity: usernameController.text,
+                                          password: passController.text,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xff3B5EDF),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'دوباره تلاش کنید',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'sb',
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              return GestureDetector(
+                                onTap: () {
+                                  BlocProvider.of<LoginBloc>(context).add(
+                                    UlEvent(
+                                      LoginParam(
+                                        identity: usernameController.text,
+                                        password: passController.text,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xff3B5EDF),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      'ورود',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'sb',
+                                        fontSize: 18,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               );
                             },
-                            child: Container(
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: const Color(0xff3B5EDF),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  'ورود',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'sb',
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
-                            ),
                           ),
                           const SizedBox(
                             height: 15,
